@@ -1,0 +1,35 @@
+name: Build Unsigned IPA
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install XcodeGen
+        run: brew install xcodegen
+        
+      - name: Generate Xcode Project
+        run: xcodegen generate
+        
+      - name: Build Project
+        run: |
+          xcodebuild clean build -project DNSOptimizer.xcodeproj -scheme DNSOptimizer -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO AD_HOC_CODE_SIGNING_ALLOWED=YES
+          
+      - name: Create IPA
+        run: |
+          mkdir -p Payload
+          cp -r build/Build/Products/Release-iphoneos/DNSOptimizer.app Payload/
+          zip -r DNSOptimizer.ipa Payload
+          
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DNSOptimizer-IPA
+          path: DNSOptimizer.ipa

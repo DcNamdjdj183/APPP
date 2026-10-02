@@ -1,0 +1,21 @@
+name: DNSOptimizer
+options:
+  bundleIdPrefix: com.example
+targets:
+  DNSOptimizer:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: DNSOptimizer/Sources
+    info:
+      path: DNSOptimizer/Info.plist
+    entitlements:
+      path: DNSOptimizer/DNSOptimizer.entitlements
+    settings:
+      CODE_SIGN_IDENTITY: ""
+      CODE_SIGNING_REQUIRED: NO
+      CODE_SIGNING_ALLOWED: NO
+      AD_HOC_CODE_SIGNING_ALLOWED: YES
+      PRODUCT_BUNDLE_IDENTIFIER: com.example.dnsoptimizer
+      SWIFT_VERSION: 5.9

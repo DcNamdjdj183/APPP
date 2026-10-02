@@ -1,6 +1,7 @@
 import Foundation
 import NetworkExtension
 import SwiftUI
+import UIKit
 import UniformTypeIdentifiers
 
 @MainActor

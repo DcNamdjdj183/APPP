@@ -87,7 +87,6 @@ struct DNSView: View {
             Image(systemName: vm.isDNSActive ? "checkmark.shield.fill" : "xmark.shield.fill")
                 .font(.system(size: 40))
                 .foregroundColor(vm.isDNSActive ? .green : .gray)
-                .symbolEffect(.bounce, value: vm.isDNSActive)
             
             VStack(alignment: .leading) {
                 Text(vm.isDNSActive ? "DNS đang hoạt động" : "Chưa chọn DNS")

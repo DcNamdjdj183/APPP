@@ -60,7 +60,7 @@ struct DNSView: View {
                         .foregroundColor(.blue)
                         
                         Button("Tôi đã cài (Xác nhận thủ công)") {
-                            withAnimation(.spring) {
+                            withAnimation(.spring()) {
                                 vm.isDNSActive = true
                             }
                         }
@@ -106,7 +106,7 @@ struct DNSView: View {
     
     private func presetRow(_ preset: DNSPreset) -> some View {
         Button {
-            withAnimation(.spring) {
+            withAnimation(.spring()) {
                 vm.activePreset = preset
             }
         } label: {

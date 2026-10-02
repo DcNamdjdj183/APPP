@@ -75,7 +75,7 @@ struct ToolsView: View {
                             Toggle("Sử dụng AdGuard DNS", isOn: Binding(
                                 get: { vm.activePreset.id == DNSPreset.adguard.id },
                                 set: { isOn in
-                                    withAnimation(.spring) {
+                                    withAnimation(.spring()) {
                                         vm.activePreset = isOn ? .adguard : .cloudflare
                                     }
                                 }

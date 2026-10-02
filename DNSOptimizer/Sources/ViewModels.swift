@@ -167,10 +167,10 @@ class SharedViewModel: ObservableObject {
             var rules: [NEOnDemandRule] = []
             if self.isOnDemandWiFiOnly {
                 let wifiRule = NEOnDemandRuleConnect()
-                wifiRule.interfaceMatch = .wiFi
+                wifiRule.interfaceTypeMatch = .wiFi
                 rules.append(wifiRule)
                 let disconnectRule = NEOnDemandRuleDisconnect()
-                disconnectRule.interfaceMatch = .cellular
+                disconnectRule.interfaceTypeMatch = .cellular
                 rules.append(disconnectRule)
             } else {
                 rules.append(NEOnDemandRuleConnect())

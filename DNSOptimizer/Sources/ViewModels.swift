@@ -177,7 +177,6 @@ class SharedViewModel: ObservableObject {
             }
             manager.onDemandRules = rules
             manager.localizedDescription = "DNSOptimizer"
-            manager.isEnabled = true
             
             manager.saveToPreferences { saveError in
                 DispatchQueue.main.async {

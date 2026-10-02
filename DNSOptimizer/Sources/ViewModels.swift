@@ -111,7 +111,7 @@ class SharedViewModel: ObservableObject {
         
         activationToast = "Đã kích hoạt: \(successCount) thành công, \(failCount) thất bại"
         addHistory("Kích hoạt \(successCount) mục thành công")
-        triggerHaptic(.success)
+        triggerHaptic(.medium)
         
         try? await Task.sleep(nanoseconds: 2_000_000_000)
         isActivating = false
@@ -186,7 +186,7 @@ class SharedViewModel: ObservableObject {
                     } else {
                         self.addHistory("Cài đặt cấu hình DNS (\(self.activePreset.name)) thành công")
                         self.checkDNSStatus()
-                        self.triggerHaptic(.success)
+                        self.triggerHaptic(.medium)
                         self.openSettings()
                     }
                 }
@@ -248,7 +248,7 @@ class SharedViewModel: ObservableObject {
             try xml.write(to: url, atomically: true, encoding: .utf8)
             shareFile(url: url)
             addHistory("Tạo mobileconfig (\(activePreset.name))")
-            triggerHaptic(.success)
+            triggerHaptic(.medium)
         } catch { print("Lỗi tạo mobileconfig: \(error)") }
     }
     
@@ -287,14 +287,14 @@ class SharedViewModel: ObservableObject {
         }
         benchmarkResults = results
         isBenchmarking = false
-        triggerHaptic(.success)
+        triggerHaptic(.medium)
     }
     
     func pickFastestDNS() {
         if let fastest = benchmarkResults.min(by: { $0.value < $1.value })?.key {
             activePreset = fastest
             addHistory("Tự động chọn DNS nhanh nhất: \(fastest.name)")
-            triggerHaptic(.success)
+            triggerHaptic(.medium)
         }
     }
     
@@ -313,7 +313,7 @@ class SharedViewModel: ObservableObject {
             } catch {}
         }
         connectionStatus = successes > 0 ? String(format: "Kết nối ổn định. Trễ: %.0f ms", avgLatency / Double(successes)) : "Lỗi kết nối."
-        triggerHaptic(.success)
+        triggerHaptic(.medium)
     }
     
     func testNetworkSpeed() async {
@@ -328,7 +328,7 @@ class SharedViewModel: ObservableObject {
             let duration = Date().timeIntervalSince(start)
             let mbps = (Double(data.count) * 8 / 1_000_000) / duration
             speedTestResult = String(format: "Tốc độ tải: %.2f Mbps", mbps)
-            triggerHaptic(.success)
+            triggerHaptic(.medium)
         } catch {
             speedTestResult = "Đã quá thời gian đo 5 giây, vui lòng thử lại."
         }
@@ -342,7 +342,7 @@ class SharedViewModel: ObservableObject {
         }
         importedFiles.removeAll()
         addHistory("Dọn dẹp cache: giải phóng \(sizeFreed / 1024) KB")
-        triggerHaptic(.success)
+        triggerHaptic(.medium)
     }
     
     func addHistory(_ msg: String) {

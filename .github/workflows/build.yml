@@ -21,7 +21,10 @@ jobs:
         run: brew install xcodegen
         
       - name: Generate Xcode Project
-        run: xcodegen generate
+        run: |
+          xcodegen generate
+          sed -i '' 's/objectVersion = 77;/objectVersion = 63;/g' DNSOptimizer.xcodeproj/project.pbxproj
+          sed -i '' 's/LastUpgradeCheck = 1600;/LastUpgradeCheck = 1540;/g' DNSOptimizer.xcodeproj/project.pbxproj
         
       - name: Build Project
         run: |
